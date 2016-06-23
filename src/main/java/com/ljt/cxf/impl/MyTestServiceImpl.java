@@ -15,6 +15,7 @@ public class MyTestServiceImpl implements MyTestService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        System.out.println("-----------------");
         return jsonObject.toString();
     }
 }
