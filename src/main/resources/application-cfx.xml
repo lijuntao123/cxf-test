@@ -32,6 +32,9 @@
         <jaxrs:languageMappings>
             <entry key="en" value="en-gb"/>
         </jaxrs:languageMappings>
+        <jaxrs:providers>
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+        </jaxrs:providers>
     </jaxrs:server>
 
 
