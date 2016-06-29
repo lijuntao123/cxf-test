@@ -1,6 +1,8 @@
 package com.ljt.cxf.impl;
 
+import com.google.gson.Gson;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 /**
@@ -50,18 +53,11 @@ public class MyTestServiceImplTest {
         body.put("appSecret", "2");
         body.put("md5key", "3");
 
-        client.path("info/saveinfo")
-                .accept(MediaType.APPLICATION_JSON)
-                .post(body, new InvocationCallback<Object>() {
-                    public void completed(Object o) {
-                        System.out.println("responseMessage : " + o);
+        client.type("json").accept("json").encoding("utf-8");
+        Response response = client.path("/info/saveinfo/").post(new Gson().toJson(body));
+        assertNotNull(response);
+        System.out.println("responseMessage : " + response.getMetadata());
 
-                    }
-
-                    public void failed(Throwable throwable) {
-
-                    }
-                });
     }
 
 

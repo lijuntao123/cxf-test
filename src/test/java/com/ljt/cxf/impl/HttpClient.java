@@ -24,7 +24,9 @@ public class HttpClient {
 
     private static WebClient client;
     private RestAdapter restAdapter;
-    private static String baseAddress = "http://10.18.210.141:8080/mgcoapi/";
+//    private static String baseAddress = "http://10.18.210.141:8080/mgcoapi/";
+    private static String baseAddress = "http://localhost:8080/services/";
+
 
     public static void main(String[] args) {
         client = WebClient.create(baseAddress)
@@ -32,7 +34,7 @@ public class HttpClient {
                 .encoding("UTF-8")
                 .acceptEncoding("UTF-8");
 //       doGet();
-        doPost();
+        doPost1();
     }
 
     public static void doPost() {
@@ -76,18 +78,6 @@ public class HttpClient {
                 System.out.println("retrofitError="+retrofitError.getMessage());
             }
         });
-//        client.path("transportgame/save_transportgame").replaceQuery(params)
-//                .accept(MediaType.APPLICATION_JSON).post(null, new InvocationCallback<String>() {
-//
-//            public void completed(String s) {
-//                System.out.println("s = [" + s + "]");
-//
-//            }
-//
-//            public void failed(Throwable throwable) {
-//                System.out.println("throwable = [" + throwable.getMessage() + "]");
-//            }
-//        });
     }
 
     public static void doGet() {

@@ -28,6 +28,7 @@
         </jaxrs:outInterceptors>
         <jaxrs:extensionMappings>
             <entry key="xml" value="application/xml"/>
+            <entry key="json" value="application/json"/>
         </jaxrs:extensionMappings>
         <jaxrs:languageMappings>
             <entry key="en" value="en-gb"/>

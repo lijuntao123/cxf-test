@@ -14,7 +14,7 @@ public class MyTestServiceImpl implements MyTestService {
     public Object getInfo() {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("name","zhangsan");
+            jsonObject.put("name", "zhangsan");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -22,17 +22,34 @@ public class MyTestServiceImpl implements MyTestService {
         return jsonObject.toString();
     }
 
-    public Object saveInfo(Map<String,Object> reqData) {
-        if(reqData!=null){
-            for(String key:reqData.keySet()){
+    public Object saveInfo(Map<String, Object> reqData) {
+        if (reqData != null) {
+            for (String key : reqData.keySet()) {
                 System.out.println("key = [" + reqData.get(key) + "]");
             }
         }
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("name","zhangsan");
-            jsonObject.put("name1","lisi");
+            jsonObject.put("name", "zhangsan");
+            jsonObject.put("name1", "lisi");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println("-----------------");
+        return jsonObject.toString();
+    }
+
+    public Object saveInfo1(String reqData) {
+
+        System.out.println("key = [" + reqData+ "]");
+
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", "zhangsan");
+            jsonObject.put("name1", "lisi");
 
         } catch (JSONException e) {
             e.printStackTrace();

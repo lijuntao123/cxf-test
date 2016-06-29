@@ -3,10 +3,7 @@ package com.ljt.cxf;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.Map;
 
@@ -22,6 +19,12 @@ public interface MyTestService {
 
     @POST
     @Path("/info/saveinfo")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Object saveInfo(@RequestBody Map<String,Object> reqData);
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Object saveInfo(Map<String,Object> reqData);
+
+    @POST
+    @Path("/info/saveinfo1")
+    @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Object saveInfo1(@MatrixParam("reqData") String reqData);
 }
