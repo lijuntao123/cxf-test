@@ -7,15 +7,16 @@ import retrofit.http.*;
 import java.util.Map;
 
 /**
- * Created by lijuntao1 on 2016/6/27.
+ * @author lijuntao1
+ * @date 2016/6/279:05
  */
 public interface IService {
     @GET("/info/getinfo")
-    public Object getInfo();
+    Object getInfo();
 
     @POST("/info/saveinfo")
-    public void saveInfo(@Body Map<String,Object> reqData, Callback<Map<String,Object>> callback);
+    void saveInfo(@Body Map<String, Object> reqData, Callback<Map<String, Object>> callback);
 
     @POST("/transportgame/save_transportgame")
-    public void saveTransportgamePayconfigInfo(@QueryMap Map<String,Object> reqData, Callback<Map<String,Object>> callback);
+    void saveTransportgamePayconfigInfo(@QueryMap Map<String, Object> reqData, Callback<Map<String, Object>> callback);
 }

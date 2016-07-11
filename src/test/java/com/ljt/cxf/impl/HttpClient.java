@@ -2,7 +2,6 @@ package com.ljt.cxf.impl;
 
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
-import com.sun.javafx.scene.layout.region.Margins;
 import org.apache.cxf.jaxrs.client.WebClient;
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -11,7 +10,6 @@ import retrofit.client.OkClient;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 
-import javax.ws.rs.client.InvocationCallback;
 import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,8 +39,8 @@ public class HttpClient {
         Map<String, Object> body = new HashMap<String, Object>();
         body.put("accessToken", "TI8DTPRXQ9ZHMM1N4JEJ401CXPDE0DF7");
         body.put("packageName", "com.ljt.game");
-        body.put("applicationName", "ÓÎÏ·");
-        body.put("partnerName", "Àõ¾üÌÎ");
+        body.put("applicationName", "ï¿½ï¿½Ï·");
+        body.put("partnerName", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         body.put("appKey", "1");
         body.put("appSecret", "2");
         body.put("md5key", "3");
@@ -63,8 +61,8 @@ public class HttpClient {
         Map<String, Object> body = new HashMap<String, Object>();
         body.put("accessToken", "TI8DTPRXQ9ZHMM1N4JEJ401CXPDE0DF7");
         body.put("packageName", "com.ljt.game");
-        body.put("applicationName", "ÓÎÏ·");
-        body.put("partnerName", "Àõ¾üÌÎ");
+        body.put("applicationName", "ï¿½ï¿½Ï·");
+        body.put("partnerName", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         body.put("appKey", "1");
         body.put("appSecret", "2");
         body.put("md5key", "3");
@@ -75,7 +73,7 @@ public class HttpClient {
             }
 
             public void failure(RetrofitError retrofitError) {
-                System.out.println("retrofitError="+retrofitError.getMessage());
+                retrofitError.fillInStackTrace().printStackTrace();
             }
         });
     }
@@ -96,10 +94,9 @@ public class HttpClient {
         client.setReadTimeout(15000, TimeUnit.MILLISECONDS);
         OkClient retrofitClient = new OkClient(client);
 
-        RestAdapter restAdapter = new RestAdapter.Builder()
+        return new RestAdapter.Builder()
                 .setEndpoint(baseAddress).setClient(retrofitClient).setConverter(new GsonConverter(new Gson(),"UTF-8"))
                 .build();
-        return restAdapter;
 
     }
 }

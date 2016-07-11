@@ -1,9 +1,14 @@
 package com.ljt.cxf.impl;
 
+import com.google.gson.Gson;
 import com.ljt.cxf.MyTestService;
+import com.sun.deploy.net.HttpResponse;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.springframework.http.HttpRequest;
 
+import javax.ws.rs.FormParam;
+import javax.ws.rs.core.Context;
 import java.util.Map;
 
 /**
@@ -22,12 +27,12 @@ public class MyTestServiceImpl implements MyTestService {
         return jsonObject.toString();
     }
 
-    public Object saveInfo(Map<String, Object> reqData) {
-        if (reqData != null) {
-            for (String key : reqData.keySet()) {
-                System.out.println("key = [" + reqData.get(key) + "]");
-            }
-        }
+
+
+    public Object saveInfo(Map<String,Object> reqData) {
+
+        System.out.println("key = [" + new Gson().toJson(reqData) + "]");
+
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -55,6 +60,10 @@ public class MyTestServiceImpl implements MyTestService {
             e.printStackTrace();
         }
         System.out.println("-----------------");
-        return jsonObject.toString();
+        return jsonObject;
+    }
+
+    public Object saveInfo2(@FormParam("") String reqData) {
+        return null;
     }
 }
