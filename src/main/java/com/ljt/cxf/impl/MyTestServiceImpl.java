@@ -2,6 +2,7 @@ package com.ljt.cxf.impl;
 
 import com.google.gson.Gson;
 import com.ljt.cxf.MyTestService;
+import com.ljt.cxf.model.MyObj;
 import com.sun.deploy.net.HttpResponse;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -31,7 +32,7 @@ public class MyTestServiceImpl implements MyTestService {
 
     public Object saveInfo(Map<String,Object> reqData) {
 
-        System.out.println("key = [" + new Gson().toJson(reqData) + "]");
+        System.out.println("saveInfo key = [" + new Gson().toJson(reqData) + "]");
 
 
         JSONObject jsonObject = new JSONObject();
@@ -46,9 +47,9 @@ public class MyTestServiceImpl implements MyTestService {
         return jsonObject.toString();
     }
 
-    public Object saveInfo1(String reqData) {
+    public Object saveInfo1(String name,String age,String address) {
 
-        System.out.println("key = [" + reqData+ "]");
+        System.out.println("saveInfo1 key = [" + name+ "]");
 
 
         JSONObject jsonObject = new JSONObject();
@@ -60,10 +61,40 @@ public class MyTestServiceImpl implements MyTestService {
             e.printStackTrace();
         }
         System.out.println("-----------------");
-        return jsonObject;
+        return jsonObject.toString();
     }
 
-    public Object saveInfo2(@FormParam("") String reqData) {
-        return null;
+    public Object saveInfo2(MyObj reqData) {
+
+        System.out.println("saveInfo2 key = [" + new Gson().toJson(reqData) + "]");
+
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", "zhangsan");
+            jsonObject.put("name1", "lisi");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println("-----------------");
+        return jsonObject.toString();
+    }
+
+    public Object saveInfo3(String reqData) {
+
+        System.out.println("saveInfo1 key = [" + reqData+ "]");
+
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", "zhangsan");
+            jsonObject.put("name1", "lisi");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println("-----------------");
+        return jsonObject.toString();
     }
 }

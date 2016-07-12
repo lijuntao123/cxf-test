@@ -2,6 +2,7 @@ package com.ljt.cxf.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.ljt.cxf.model.MyObj;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,7 +33,7 @@ public class MyTestServiceImplTest {
         client = WebClient.create(baseAddress)
                 .header("charset", "UTF-8")
                 .encoding("UTF-8")
-                .acceptEncoding("UTF-8");
+                .acceptEncoding("UTF-8").accept(MediaType.APPLICATION_JSON);
     }
 
     @Test
@@ -47,15 +48,6 @@ public class MyTestServiceImplTest {
     @Test
     public void testSaveInfo() {
 
-//        Form form=new Form();
-//        form.param("accessToken", "TI8DTPRXQ9ZHMM1N4JEJ401CXPDE0DF7");
-//        form.param("packageName", "com.ljt.game");
-//        form.param("applicationName", "11");
-//        form.param("partnerName", "111");
-//        form.param("appKey", "1");
-//        form.param("appSecret", "2");
-//        form.param("md5key", "3");
-
         Map<String, Object> body = new HashMap<String, Object>();
         body.put("accessToken", "TI8DTPRXQ9ZHMM1N4JEJ401CXPDE0DF7");
         body.put("packageName", "com.ljt.game");
@@ -65,8 +57,9 @@ public class MyTestServiceImplTest {
         body.put("appSecret", "2");
         body.put("md5key", "3");
 
-        client.type("json").accept("json").encoding("utf-8").acceptEncoding("utf-8");
-        String response = client.path("/info/saveinfo/").post(body.toString(),String.class);
+        String response = client.accept(MediaType.APPLICATION_JSON)
+                .type(MediaType.APPLICATION_JSON).encoding("UTF-8")
+                .path("/info/saveinfo/").post(new Gson().toJson(body), String.class);
         assertNotNull(response);
         System.out.println("testSaveInfo responseMessage : " + response);
 
@@ -83,10 +76,24 @@ public class MyTestServiceImplTest {
         body.put("appSecret", "2");
         body.put("md5key", "3");
 
-        client.type("json").accept("json").encoding("utf-8").acceptEncoding("utf-8");
-        String response = client.path("/info/saveinfo1/").post(new Gson().toJson(body),String.class);
+        String response = client.type(MediaType.APPLICATION_FORM_URLENCODED).path("/info/saveinfo1/")
+                .post(new Gson().toJson(body), String.class);
         assertNotNull(response);
         System.out.println("testSaveInfo1 responseMessage : " + response);
+
+    }
+
+    @Test
+    public void testSaveInfo2() {
+        MyObj myObj = new MyObj();
+        myObj.setName("zhangsan");
+        myObj.setAddress("ÇàµºÊÐ");
+        myObj.setAge("12");
+        String response = client.type(MediaType.APPLICATION_JSON)
+                .encoding("UTF-8").path("/info/saveinfo2/")
+                .post(new Gson().toJson(myObj), String.class);
+        assertNotNull(response);
+        System.out.println("testSaveInfo2 responseMessage : " + response);
 
     }
 }

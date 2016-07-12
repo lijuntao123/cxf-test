@@ -52,7 +52,7 @@ public class HttpClient {
             }
 
             public void failure(RetrofitError retrofitError) {
-                System.out.println("retrofitError=" + retrofitError.getMessage());
+                System.out.println("retrofitError=" + retrofitError.getLocalizedMessage());
             }
         });
     }
@@ -93,6 +93,7 @@ public class HttpClient {
         client.setConnectTimeout(15000, TimeUnit.MILLISECONDS);
         client.setReadTimeout(15000, TimeUnit.MILLISECONDS);
         OkClient retrofitClient = new OkClient(client);
+
 
         return new RestAdapter.Builder()
                 .setEndpoint(baseAddress).setClient(retrofitClient).setConverter(new GsonConverter(new Gson(),"UTF-8"))

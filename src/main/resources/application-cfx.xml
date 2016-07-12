@@ -34,7 +34,8 @@
             <entry key="en" value="en-gb"/>
         </jaxrs:languageMappings>
         <jaxrs:providers>
-            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+            <!--<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>-->
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"/>
         </jaxrs:providers>
     </jaxrs:server>
 
